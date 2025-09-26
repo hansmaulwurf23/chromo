@@ -1,0 +1,68 @@
+@import './base.css';
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+#app {
+  max-width: 400px;
+  margin: auto;
+  height: 100vh;
+  background-color: var(--bs-body-bg);
+}
+
+.overlayContainer {
+  @extend .card;
+  @extend .p-3;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  overflow: scroll;
+}
+
+.pointContainer {
+  @extend .border;
+  @extend .rounded-2;
+  @extend .m-1;
+  @extend .p-1;
+  border-color: #808080;
+}
+
+.squarebtn {
+  @extend .btn;
+  @extend .p-0;
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+
+  &:disabled {
+    border: none;
+  }
+}
+
+#myErrorAlert {
+  @extend .border;
+  @extend .text-white;
+  @extend .alert;
+  @extend .alert-dismissible;
+  @extend .fade;
+
+  font-weight: bold;
+}
+
+#diceInputContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#diceInputContainer div {
+  text-align: center;
+}
+
+.disnone {
+  display: none;
+}
