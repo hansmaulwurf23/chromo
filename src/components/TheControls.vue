@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  mdiRestart, mdiPodium
+  mdiCalendarToday, mdiCalendarWeek
 } from '@mdi/js'
 import {useTimeStore} from "@/stores/timeStore.js";
 import SvgIcon from "vue3-icon"
@@ -10,11 +10,11 @@ const store = useTimeStore()
 
 <template>
   <div class="controlsContainer mx-2 mt-2">
-    <button class="squarebtn" @click="store.increment()">
-      <svg-icon type="mdi" size="36" :path="mdiRestart"></svg-icon>
+    <button class="squarebtn" @click="store.increment()" title="Tag">
+      <svg-icon type="mdi" size="36" :path="mdiCalendarToday"></svg-icon>
     </button>
     <button class="squarebtn" @click="$emit('showHighscore')">
-      <svg-icon type="mdi" size="36" :path="mdiPodium"></svg-icon>
+      <svg-icon type="mdi" size="36" :path="mdiCalendarWeek"></svg-icon>
     </button>
   </div>
 </template>
