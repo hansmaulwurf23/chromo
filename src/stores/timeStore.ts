@@ -26,7 +26,7 @@ export const useTimeStore = defineStore('timeStore', () => {
       }).catch((err) => {
       if (err.response.status === 404) {
         error.value = "Neuer Eintrag!"
-        currentRecord.value = {}
+        currentRecord.value = {"wann": currentDate.value}
       } else {
         error.value = err.message || "Failed to fetch items";
       }
