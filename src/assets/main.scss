@@ -41,6 +41,16 @@
   &:disabled {
     border: none;
   }
+
+  &:hover {
+    background-color: var(--bs-gray-800);
+  }
+}
+
+.squaresmbtn {
+  @extend .squarebtn;
+  width: 38px;
+  height: 38px;
 }
 
 #myErrorAlert {
