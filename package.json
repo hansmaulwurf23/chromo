@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",

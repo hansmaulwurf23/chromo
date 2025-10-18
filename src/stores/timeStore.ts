@@ -10,6 +10,10 @@ export const useTimeStore = defineStore('timeStore', () => {
   const darkTheme = ref(true)
   const loading = ref(false)
   const error = ref("")
+  const BACKEND = import.meta.env.VITE_BACKEND_URL
+
+  console.log(BACKEND);
+  console.log(import.meta.env);
 
   function toggleDarkTheme() {
     console.log('toggle dark theme');
@@ -20,7 +24,7 @@ export const useTimeStore = defineStore('timeStore', () => {
   function changedDate() {
     loading.value = true;
     error.value = "";
-    axios.get(`http://localhost:8000/records/${currentDate.value}`)
+    axios.get(`${BACKEND}/${currentDate.value}`)
       .then((response) => {
         currentRecord.value = response.data;
       }).catch((err) => {
@@ -36,7 +40,7 @@ export const useTimeStore = defineStore('timeStore', () => {
   }
 
   function storeRecord() {
-    axios.post("http://localhost:8000/records", currentRecord.value)
+    axios.post(BACKEND, currentRecord.value)
       .then((response) => {
         return response.data;
       }).catch((err) => {
@@ -45,7 +49,7 @@ export const useTimeStore = defineStore('timeStore', () => {
   }
 
   function deleteRecord(id: str) {
-    axios.delete(`http://localhost:8000/records/${id}`)
+    axios.delete(`${BACKEND}/${id}`)
       .then((response) => {
         console.log(response);
       })
@@ -55,7 +59,8 @@ export const useTimeStore = defineStore('timeStore', () => {
   }
 
   function addVerfuegungszeit() {
-    currentRecord.value.verf.push({von: '14:00', bis: '16:00', name: 'Eintrag'})
+    // currentRecord.value.verf.push({von: '14:00', bis: '16:00', name: 'Eintrag'})
+    currentRecord.value.verf.push({})
   }
 
   function removeVerfuegungszeit(idx: number) {

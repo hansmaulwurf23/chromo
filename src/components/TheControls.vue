@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  mdiCalendarToday, mdiCalendarWeek, mdiContentSave, mdiDelete
+  mdiCalendarToday, mdiCalendarWeek, mdiContentSave, mdiContentSavePlus, mdiDelete
 } from '@mdi/js'
 import {useTimeStore} from "@/stores/timeStore.js";
 import SvgIcon from "vue3-icon"
@@ -14,7 +14,8 @@ const store = useTimeStore()
       <svg-icon type="mdi" size="36" :path="mdiDelete"></svg-icon>
     </button>
     <button class="squarebtn" @click="store.storeRecord(store.currentRecord)" title="Tag">
-      <svg-icon type="mdi" size="36" :path="mdiContentSave"></svg-icon>
+      <svg-icon type="mdi" size="36" :path="mdiContentSave" v-if="store.currentRecord._id"></svg-icon>
+      <svg-icon type="mdi" size="36" :path="mdiContentSavePlus" v-if="!store.currentRecord._id"></svg-icon>
     </button>
     <button class="squarebtn" @click="store.currentDate = new Date()" title="Tag">
       <svg-icon type="mdi" size="36" :path="mdiCalendarToday"></svg-icon>
