@@ -1,19 +1,43 @@
 <script setup lang="ts">
+import {RouterLink, RouterView, useRouter} from 'vue-router'
 import {useTimeStore} from "@/stores/timeStore.ts";
-import TheControls from "@/components/TheControls.vue";
-import TheDayInput from "@/components/TheDayInput.vue";
+import {onMounted} from "vue";
+import decodeJwtResponse from "@/auth.ts";
+import TheNav from "@/components/TheNav.vue";
 
 const store = useTimeStore()
-document.documentElement.setAttribute('data-bs-theme', store.darkTheme ? 'dark': 'light');
+const router = useRouter()
+document.documentElement.setAttribute('data-bs-theme', store.darkTheme ? 'dark' : 'light');
+
+onMounted(() => {
+  if (!store.profile?.email) {
+    if (localStorage.getItem('creds')) {
+      const responsePayload = decodeJwtResponse(localStorage.getItem('creds'));
+      const email = responsePayload.email;
+      store.initProfile(email, () => {
+        console.log('loaded pofile from localStorage');
+      });
+    } else {
+      console.log('No profile found. Redirecting to auth');
+      router.push({name: 'auth'});
+    }
+  }
+})
 </script>
 
 <template>
-  <main>
-    <div id="appContainer">
-      <TheControls/>
-      <TheDayInput/>
-    </div>
-  </main>
+  <header>
+    <nav>
+      <TheNav/>
+
+    </nav>
+  </header>
+
+  <RouterView />
+
+  <footer>
+      <RouterLink to="/about">About</RouterLink>
+  </footer>
 </template>
 
 <style scoped>

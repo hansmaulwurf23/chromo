@@ -2,7 +2,10 @@
 import {useTimeStore} from "@/stores/timeStore.ts";
 import {mdiPlus, mdiTrashCanOutline} from "@mdi/js";
 import SvgIcon from "vue3-icon";
+import {onMounted} from "vue";
+import {useRouter} from "vue-router";
 
+const router = useRouter();
 const store = useTimeStore();
 store.changedDate();
 </script>
